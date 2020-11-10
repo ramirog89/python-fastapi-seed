@@ -1,0 +1,17 @@
+# IDE
+.vscode/
+
+# MISCELLANEOUS
+coverage/
+logs/*
+
+# CACHE
+*.pyc
+.coverage
+.pytest_cache
+
+# CONFIGS
+src/config/env/*
+
+# DB
+*.db

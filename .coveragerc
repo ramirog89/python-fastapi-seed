@@ -1,0 +1,14 @@
+[run]
+omit =
+      # Omit __init__ files from report which are not tested
+      ./*__init__*
+      # Omit models files from report which are not tested
+      ./*model*
+      # Omit test files from report
+      ./*test*
+      # Omit schemas files from report
+      ./*schemas*
+      # Omit schemas files from report
+      ./src/config/*
+      # Omit database setup from report
+      ./src/database/setup.py
