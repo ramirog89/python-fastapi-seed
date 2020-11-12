@@ -1,6 +1,6 @@
 from fastapi import Depends
 
-from src.database import get_db
+from src.app.database import get_db
 
 class BaseRepository:
   session = None

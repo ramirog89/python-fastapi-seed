@@ -1,4 +1,4 @@
-from src.schemas.pagination import PaginationSchema
+from src.app.schemas.pagination import PaginationSchema
 
 def paginator(query, page: int, limit: int) -> PaginationSchema:
   result = query.offset(page).limit(limit).all()

@@ -1,8 +1,8 @@
 from fastapi import Depends
 
-from src.repositories import UserRepository
-from src.schemas import user as schema
-from src.utils.validator import validate, isRequired
+from src.app.repositories import UserRepository
+from src.app.schemas import user as schema
+from src.app.utils.validator import validate, isRequired
 
 class UserBusinessLogicService:
   userRepository = None

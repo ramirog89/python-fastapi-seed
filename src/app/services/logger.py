@@ -2,7 +2,7 @@ import os
 import json
 import logging, logging.config
 
-from src.config.logger import loggerConfig
+from src.app.config.logger import loggerConfig
 
 class LoggerService:
   def __init__(self, path='', envvar='LOG_CFG'):

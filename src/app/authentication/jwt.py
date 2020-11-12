@@ -4,8 +4,8 @@ from typing import List
 from fastapi import Depends, HTTPException, status, Header
 from fastapi.security.api_key import APIKeyHeader
 
-from src.config import settings
-from src.services.authentication import AuthenticationService
+from src.app.config import settings
+from src.app.services.authentication import AuthenticationService
 
 jwt_auth_scheme = APIKeyHeader(name='Authorization')
 
@@ -17,7 +17,6 @@ def decodeToken(token: str):
   return payload
 
 def auth_jwt(token: str = Depends(jwt_auth_scheme), authService: AuthenticationService = Depends()) -> dict:
-  ''' @TODO: Implement Token Expiration '''
   isValid = compile('^(?s:Bearer).*$')
 
   if isValid.match(token) is None:

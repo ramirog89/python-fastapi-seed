@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 
-from src.services.authentication import AuthenticationService
-from src.schemas.login import LoginSchema
-from src.schemas.token import TokenSchema
+from src.app.services.authentication import AuthenticationService
+from src.app.schemas.login import LoginSchema
+from src.app.schemas.token import TokenSchema
 
 router = APIRouter()
 

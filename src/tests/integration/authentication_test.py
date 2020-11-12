@@ -1,6 +1,5 @@
 from src.tests import app, testApp, testingSession, setupAdmin, teardownUser, tokenLogin
-
-from src.authentication.jwt import auth_jwt
+from src.app.authentication.jwt import auth_jwt
 
 def setup_module(module):
   ''' Create a first user in the database '''

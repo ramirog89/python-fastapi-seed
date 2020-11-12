@@ -1,18 +1,21 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.config import settings
-from src.authentication import auth_jwt
-from src.controllers import authentication, user
+from src.app.config import settings
+from src.app.authentication import auth_jwt
+from src.app.controllers import authentication, user
 
 class Application(FastAPI):
   settings = None
 
   def __init__(self):
-    super().__init__()
+    super().__init__(
+      docs_url=settings['SWAGGER']['DOCS_URL'],
+      redoc_url=settings['SWAGGER']['REDOC_URL']
+    )
 
   def boostrap(self):
-    self.debug = settings['SERVER']['WSGI']['DEBUG']
+    self.debug = settings['SERVER']['DEBUG']
     self.enableCors()
     self.configureCommonApis()
   

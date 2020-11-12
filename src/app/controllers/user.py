@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from typing import List
 
-from src.authentication import SecurityRole
-from src.services.businessLogic.user import UserBusinessLogicService, schema
-from src.repositories.user import model
-from src.schemas.pagination import PaginationSchema
+from src.app.authentication import SecurityRole
+from src.app.services.businessLogic.user import UserBusinessLogicService, schema
+from src.app.repositories.user import model
+from src.app.schemas.pagination import PaginationSchema
 
 router = APIRouter()
 

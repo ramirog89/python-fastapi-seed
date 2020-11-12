@@ -4,11 +4,11 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from src import app
-from src.database import Base, get_db
+from src.app import app
+from src.app.database import Base, get_db
 
-from src.services.authentication import AuthenticationService
-from src.repositories.user import UserRepository, schema, model
+from src.app.services import AuthenticationService
+from src.app.repositories.user import UserRepository, schema, model
 
 TEST_ROOT_DIR = path.dirname(path.abspath(__file__))
 

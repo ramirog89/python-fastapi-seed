@@ -9,6 +9,6 @@ omit =
       # Omit schemas files from report
       ./*schemas*
       # Omit schemas files from report
-      ./src/config/*
+      ./src/app/config/*
       # Omit database setup from report
-      ./src/database/setup.py
+      ./src/app/database*

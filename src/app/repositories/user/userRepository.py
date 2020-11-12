@@ -1,11 +1,11 @@
 from fastapi import Depends
 from sqlalchemy import text
 
-from src.database import get_db
-from src.repositories import BaseRepository
-from src.schemas import user as schema, pagination
-from src.models import user as model
-from src.utils.paginator import paginator
+from src.app.database import get_db
+from src.app.repositories import BaseRepository
+from src.app.schemas import user as schema, pagination
+from src.app.models import user as model
+from src.app.utils.paginator import paginator
 
 class UserRepository(BaseRepository):
 

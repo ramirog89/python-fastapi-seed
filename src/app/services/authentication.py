@@ -1,10 +1,10 @@
 from jwt import encode
 from fastapi import Depends
 
-from src.config import settings
-from src.repositories.user import UserRepository
-from src.schemas.user import User
-from src.models.user import UserRole
+from src.app.config import settings
+from src.app.repositories.user import UserRepository
+from src.app.schemas.user import User
+from src.app.models.user import UserRole
 
 class AuthenticationService:
   repository = None

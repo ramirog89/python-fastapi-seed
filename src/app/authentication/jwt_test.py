@@ -2,7 +2,7 @@ from pytest import raises
 from fastapi import HTTPException, status
 
 from src.tests import userRepository, setupAdmin, teardownUser, adminToken, invalidWebToken
-from src.services.authentication import AuthenticationService
+from src.app.services.authentication import AuthenticationService
 
 from .jwt import auth_jwt
 
