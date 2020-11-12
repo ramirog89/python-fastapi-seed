@@ -7,10 +7,13 @@ from src.controllers import authentication, user
 
 class Application(FastAPI):
   def __init__(self):
-    super().__init__()
+    super().__init__(
+      docs_url=settings['SWAGGER']['DOCS_URL'],
+      redoc_url=settings['SWAGGER']['REDOC_URL']
+    )
 
   def boostrap(self):
-    self.debug = settings['SERVER']['WSGI']['DEBUG']
+    self.debug = settings['SERVER']['DEBUG']
     self.enableCors()
     self.configureCommonApis()
   

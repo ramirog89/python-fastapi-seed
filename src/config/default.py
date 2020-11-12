@@ -1,13 +1,15 @@
 defaultConfig = {
   'ENVIRONMENT': 'local',
   'SERVER': {
-    'WSGI': {
-      'HOSTNAME': '127.0.0.1',
-      'PORT': 5000,
-      'DEBUG': True,
-      'RELOAD': False,
-      'LOG_LEVEL': 'debug'
-    }
+    'HOSTNAME': '127.0.0.1',
+    'PORT': 5000,
+    'DEBUG': True,
+    'RELOAD': False,
+    'LOG_LEVEL': 'debug'
+  },
+  'SWAGGER': {
+    'DOCS_URL': '/docs',
+    'REDOC_URL': '/redoc_docs',
   },
   'JWT': {
     'SECRET_KEY': 'some-secret-key'
