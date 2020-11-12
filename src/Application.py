@@ -6,8 +6,6 @@ from src.authentication import auth_jwt
 from src.controllers import authentication, user
 
 class Application(FastAPI):
-  settings = None
-
   def __init__(self):
     super().__init__()
 
