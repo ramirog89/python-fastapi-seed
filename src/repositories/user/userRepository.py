@@ -5,7 +5,7 @@ from src.database import get_db
 from src.repositories import BaseRepository
 from src.schemas import user as schema, pagination
 from src.models import user as model
-from src.utils import paginator
+from src.utils.paginator import paginator
 
 class UserRepository(BaseRepository):
 

@@ -1,4 +1,5 @@
 defaultConfig = {
+  'ENVIRONMENT': 'local',
   'SERVER': {
     'WSGI': {
       'HOSTNAME': '127.0.0.1',

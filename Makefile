@@ -21,7 +21,7 @@ testerrors:
 	@rm test.db
 
 dev:
-	python3.8 run.py --env=develop
+	python3.8 run.py
 
 prod:
-	python3.8 run.py --env=production
+	python3.8 run.py --env production
