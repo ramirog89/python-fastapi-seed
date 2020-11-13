@@ -17,7 +17,6 @@ def get(
   service: UserBusinessLogicService = Depends(),
   security: SecurityRole([model.UserRole.ADMIN.value]) = Depends()
 ):
-  print('dale guacho')
   return service.getUserList(page, limit, sort, order)
 
 @router.get("/users/{id}", response_model=schema.User, tags=['users'])
