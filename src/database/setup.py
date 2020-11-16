@@ -1,5 +1,3 @@
-from fastapi import Request
-
 from src import models
 from .database import engine, SessionLocal
 

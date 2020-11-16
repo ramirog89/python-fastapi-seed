@@ -1,7 +1,7 @@
 from pytest import raises
 from fastapi import HTTPException, status
 
-from src.tests import userRepository, setupAdmin, teardownUser, adminToken, invalidWebToken
+from src.tests import userRepository, setupAdmin, teardownUser, getAuthorizationToken
 from src.services.authentication import AuthenticationService
 
 from .jwt import auth_jwt
@@ -11,13 +11,13 @@ def setup_module(module):
 
 def test_valid_token():
   authService = AuthenticationService(repository=userRepository)
-  response = auth_jwt(adminToken, authService)
-  assert response == {'id': 1, 'is_active': True, 'role': 'admin', 'username': 'test'}
+  response = auth_jwt(getAuthorizationToken('admin'), authService)
+  assert response == {'id': 1, 'is_active': True, 'role': 'admin', 'username': 'admintest'}
 
 def test_invalid_token():
   authService = AuthenticationService(repository=userRepository)
   with raises(HTTPException) as error:
-    auth_jwt(invalidWebToken, authService)
+    auth_jwt(getAuthorizationToken('invalid'), authService)
   assert error.value.status_code == status.HTTP_403_FORBIDDEN
 
 def test_token_not_match():

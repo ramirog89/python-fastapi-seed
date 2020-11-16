@@ -1,4 +1,4 @@
-from src.tests import app, testApp, testingSession, setupAdmin, teardownUser, tokenLogin
+from src.tests import app, testApp, setupAdmin, teardownUser, getToken
 
 from src.authentication.jwt import auth_jwt
 
@@ -9,10 +9,10 @@ def setup_module(module):
 def test_valid_login():
     response = testApp.post(
         "/auth/login",
-        json={"username": 'test', "password": 'test'}
+        json={"username": 'admintest', "password": 'admintest'}
     )
     assert response.status_code == 200
-    assert response.json() == {'token': tokenLogin }
+    assert response.json() == {'token': getToken('admin') }
 
 def test_invalid_login():
     response = testApp.post(

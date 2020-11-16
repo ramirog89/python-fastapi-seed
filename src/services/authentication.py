@@ -14,9 +14,13 @@ class AuthenticationService:
 
   def userExist(self, id: int) -> bool:
     return bool(self.repository.getUserById(id))
+
+  @staticmethod
+  def encodeToken(user) -> str:
+    return encode(User(**vars(user)).as_dict(), settings['JWT']['SECRET_KEY'], algorithm='HS256').decode('utf-8')
   
   def login(self, username: str, password: str) -> User:
     user = self.repository.getUserByUsernameAndPassword(username, password)
     if user:
-      return encode(User(**vars(user)).as_dict(), settings['JWT']['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+      return AuthenticationService.encodeToken(user)
     return False

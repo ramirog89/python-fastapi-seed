@@ -2,6 +2,7 @@ clean:
 	rm -rf coverage/
 	rm -rf logs/*
 	rm -rf .pytest_cache
+	rm test.db
 	coverage erase
 
 install:
