@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
-class TokenSchema(BaseModel):
-  token: str
 
+class TokenSchema(BaseModel):
+    token: str
