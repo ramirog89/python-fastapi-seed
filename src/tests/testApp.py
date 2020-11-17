@@ -24,6 +24,12 @@ Base.metadata.create_all(bind=engine)
 testingSession = TestingSessionLocal()
 userRepository = UserRepository(session=testingSession)
 
+userDict = {
+  'admin': schema.User(id=1, username='admintest', role='admin', is_active=True),
+  'supservisor': schema.User(id=2, username='supervisortest', role='supervisor', is_active=True),
+  'user': schema.User(id=3, username='usertest', role='user', is_active=True)
+}
+
 def get_db_test():
   try:
     db = TestingSessionLocal()
@@ -32,33 +38,32 @@ def get_db_test():
     db.close()
 
 app.dependency_overrides[get_db] = get_db_test
-testApp = TestClient(app)
 
-userDict = {
-  'admin': schema.User(id=1, username='admintest', role='admin', is_active=True),
-  'supservisor': schema.User(id=2, username='supervisortest', role='supervisor', is_active=True),
-  'user': schema.User(id=3, username='usertest', role='user', is_active=True)
-}
+class TokenTest:
+  def __init__(self, token):
+    self.raw = token
+    self.auth = 'Bearer ' + token
 
-def getToken(name: str ='admin') -> str:
+def getToken(name: str) -> str:
   if name in userDict:
     return AuthenticationService.encodeToken(userDict[name])
   return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6InJhbWlybyIsImhhc2hlZF9wYXNzd29yZCI6InJhbWlyb25vdHJlYWxseWhhc2hlZCIsImlzX2FjdGl2ZSI6IlRydWUifQ.m13_7zIJovVkkZw27q_uBqPqqCCV2D0_Y5TMFsdmlmo'
 
-def getAuthorizationToken(name: str ='admin') -> str:
-  return 'Bearer ' + getToken(name)
-
-def setupAdmin() -> None:
-  ''' Create a first user in the database '''
-  user = schema.UserCreate(username=userDict['admin'].username, password='admintest', role=userDict['admin'].role)
-  userRepository.create(user)
-
-def setupUser() -> None:
-  ''' Create a first user in the database '''
-  user = schema.UserCreate(username=userDict['user'].username, password='usertest', role=userDict['user'].role)
+def user(role: str) -> None:
+  user = schema.UserCreate(username=userDict[role].username, password=role + 'test', role=userDict[role].role)
   userRepository.create(user)
 
 def teardownUser() -> None:
   ''' Drop rows from user table '''
   testingSession.query(model.User).delete()
   testingSession.commit()
+
+@fixture
+def testApp():
+  return TestClient(app)
+
+@fixture
+def token():
+  def _getToken(name: str = 'admin') -> TokenTest:
+    return TokenTest(getToken(name))
+  return _getToken
