@@ -9,5 +9,5 @@ if __name__ == "__main__":
     port=settings['SERVER']['PORT'],
     log_level=settings['SERVER']['LOG_LEVEL'],
     reload=settings['SERVER']['RELOAD'],
-    workers=1
+    workers=settings['SERVER']['WORKERS']
   )

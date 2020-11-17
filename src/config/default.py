@@ -5,7 +5,8 @@ defaultConfig = {
         'PORT': 5000,
         'DEBUG': True,
         'RELOAD': False,
-        'LOG_LEVEL': 'debug'
+        'LOG_LEVEL': 'debug',
+        'WORKERS': 1
     },
     'API': {
         'TITLE': 'REST API',
