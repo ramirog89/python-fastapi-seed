@@ -8,6 +8,9 @@ from src.controllers import authentication, user
 class Application(FastAPI):
   def __init__(self):
     super().__init__(
+      title=settings['API']['TITLE'],
+      description=settings['API']['DESCRIPTION'],
+      version=settings['API']['VERSION'],
       docs_url=settings['SWAGGER']['DOCS_URL'],
       redoc_url=settings['SWAGGER']['REDOC_URL']
     )

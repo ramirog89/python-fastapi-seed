@@ -1,9 +1,11 @@
-from typing import Generic, List, Dict, Callable
+from typing import Generic, List, Dict, Callable, Any
 from email_validator import validate_email, EmailNotValidError
 from functools import reduce
 
 class ErrorField:
-  field: List[str]
+  key: str
+  value: Any
+  rules: List[str]
 
 class ValidationError:
   errors: List[ErrorField]

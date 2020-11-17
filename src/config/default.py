@@ -7,6 +7,11 @@ defaultConfig = {
     'RELOAD': False,
     'LOG_LEVEL': 'debug'
   },
+  'API': {
+    'TITLE': 'REST API',
+    'DESCRIPTION': 'Minimal rest api setup',
+    'VERSION': '0.1.0',
+  },
   'SWAGGER': {
     'DOCS_URL': '/docs',
     'REDOC_URL': '/redoc_docs',

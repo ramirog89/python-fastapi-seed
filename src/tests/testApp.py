@@ -40,25 +40,25 @@ userDict = {
   'user': schema.User(id=3, username='usertest', role='user', is_active=True)
 }
 
-def getToken(name='admin'):
-  if name == 'invalid':
-    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6InJhbWlybyIsImhhc2hlZF9wYXNzd29yZCI6InJhbWlyb25vdHJlYWxseWhhc2hlZCIsImlzX2FjdGl2ZSI6IlRydWUifQ.m13_7zIJovVkkZw27q_uBqPqqCCV2D0_Y5TMFsdmlmo'
-  return AuthenticationService.encodeToken(userDict[name])
+def getToken(name: str ='admin') -> str:
+  if name in userDict:
+    return AuthenticationService.encodeToken(userDict[name])
+  return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6InJhbWlybyIsImhhc2hlZF9wYXNzd29yZCI6InJhbWlyb25vdHJlYWxseWhhc2hlZCIsImlzX2FjdGl2ZSI6IlRydWUifQ.m13_7zIJovVkkZw27q_uBqPqqCCV2D0_Y5TMFsdmlmo'
 
-def getAuthorizationToken(name='admin'):
+def getAuthorizationToken(name: str ='admin') -> str:
   return 'Bearer ' + getToken(name)
 
-def setupAdmin():
+def setupAdmin() -> None:
   ''' Create a first user in the database '''
   user = schema.UserCreate(username=userDict['admin'].username, password='admintest', role=userDict['admin'].role)
   userRepository.create(user)
 
-def setupUser():
+def setupUser() -> None:
   ''' Create a first user in the database '''
   user = schema.UserCreate(username=userDict['user'].username, password='usertest', role=userDict['user'].role)
   userRepository.create(user)
 
-def teardownUser():
+def teardownUser() -> None:
   ''' Drop rows from user table '''
   testingSession.query(model.User).delete()
   testingSession.commit()

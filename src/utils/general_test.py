@@ -1,10 +1,18 @@
-from pytest_mock import mock
-from .general import getSettings
+from os import sys
 
-def test_get_settings():
-    module_obj = {'name': {}, 'another_name': {}, 'config': {} }
-    with mock.patch.object('importlib.import_module', module_obj) as m:
-      a = getSettings('default', { '1': 2 })
-      print('m' ,m)
-      print('a', a)
-      assert 1 == 2
+from .general import getSettings
+class TestModule:
+  config = {}
+
+sys.modules['test'] = TestModule
+del sys.modules['test']
+
+def test_get_imported_settings():
+    imported_module = getSettings('test', {})
+    assert imported_module == TestModule.config
+
+def test_get_default_settings():
+    defaultConfig = { 'server': 'localhost' }
+    imported_module = getSettings('noexisting', defaultConfig)
+    assert imported_module == defaultConfig
+
