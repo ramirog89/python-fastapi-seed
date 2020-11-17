@@ -24,11 +24,11 @@ testerrors:
 dev:
 	python3.8 run.py
 
-prod:
+testprod:
 	python3.8 run.py --env production
 
 build:
 	docker build -t python-fastapi ./
 
-run:
+prod:
 	docker run -it --net=host -p 7000:7000 python-fastapi

@@ -7,11 +7,12 @@
 
 ## Commands
 * **installation:** `make install` *install all packages from requirements*
-* **run:** `make run` *build swagger definitions and starts the server on development mode listening to file changes*
+* **dev:** `make dev` *build swagger definitions and starts the server on development mode listening to file changes*
+* **testprod:** `make testprod` *run application in production mode in localhost*
 * **lint:** `make lint` *linter rules with flake8*
 * **test:** `make test` *unit and integration tests*
 * **build:** `make build` *build docker image with latest change*
-* **deploy:** `make deploy` *run docker deploy*
+* **prod:** `make prod` *run docker image in production mode*
 
 ## Scaffolding
 * authentication `authentication abstraction`
@@ -21,10 +22,8 @@
 * models `classes representing entities. They are also used to normalize data`
 * schemas `classes that allows fastapi document swagger input/output routes`
 * respositories `data abstraction layers`
-* * psql `psql repos`
 * services `business logic to be used primary by controllers`
-* setup `migrations and seeds for all dbs`
-* utils
+* utils `utilities shared in the application`
 * tests `test setup`
 
 ## Technologies
@@ -37,6 +36,7 @@
 ## Requirements
 * python >= 3.7
 * pip >= 3.7
+* Makefile
 
 ## Recommendations
 * Use virtualenv to manage dependencies per project. (Virtualenvwrapper is recommended)
