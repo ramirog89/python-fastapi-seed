@@ -7,6 +7,11 @@ from src.schemas.user import User
 
 
 class AuthenticationService:
+    '''
+        AuthenticationService class is resposible to login and logout a user,
+        has the logic to perform verifications related users in the system
+        in the authentication workflow
+    '''
     repository = None
 
     def __init__(self, repository: UserRepository = Depends(UserRepository)):

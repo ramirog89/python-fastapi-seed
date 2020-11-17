@@ -12,6 +12,9 @@ jwt_auth_scheme = APIKeyHeader(name='Authorization')
 
 
 def decodeToken(token: str):
+    '''
+        decodeToken: Decodes current verified token with the secret key and HS256 algorithm
+    '''
     try:
         payload = decode(token, settings['JWT']['SECRET_KEY'], algorithms='HS256')
     except:
@@ -20,7 +23,10 @@ def decodeToken(token: str):
 
 
 def auth_jwt(token: str = Depends(jwt_auth_scheme), authService: AuthenticationService = Depends()) -> dict:
-    ''' @TODO: Implement Token Expiration '''
+    '''
+        auth_jwt: Request middleware that verifies the Authorization
+        key on the header to be compliance with JWT token
+    '''
     isValid = compile('^(?s:Bearer).*$')
 
     if isValid.match(token) is None:
@@ -38,6 +44,10 @@ def auth_jwt(token: str = Depends(jwt_auth_scheme), authService: AuthenticationS
 
 
 def SecurityRole(roleList: List[str] = []):
+    '''
+        Security Role: Decorator that verify that the current token
+        a valid role to access requested endpoint
+    '''
     def check(payload: dict = Depends(auth_jwt)):
         if not payload['role'] in roleList:
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)

@@ -7,6 +7,9 @@ from src.utils.paginator import paginator
 
 
 class UserRepository(BaseRepository):
+    '''
+        UserRepository class is a sqlAlchemy session abstraction to perform queries to the User model
+    '''
 
     def getUserByUsernameAndPassword(self, username: str, password: str) -> model.User:
         return self.session.query(model.User).filter(model.User.username == username, model.User.hashed_password == password + 'notreallyhashed').first()

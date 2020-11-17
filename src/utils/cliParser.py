@@ -2,6 +2,11 @@ import argparse
 
 
 class CliParser:
+    '''
+        CliParser class is a argparser wrapper that creates a parameter interface
+        to our application and validate and register arguments in a standard way,
+        define default values for each argument.
+    '''
     parser = None
     defaultEnvironment = 'develop'
 

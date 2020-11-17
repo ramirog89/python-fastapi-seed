@@ -41,5 +41,12 @@ def validateField(accumulator, item):
 
 
 def validate(schema, constraints: Dict[str, List[Callable]]) -> ValidationError:
+    '''
+        validate util function is a custom way to add validators to a schema.
+        @schema: Any registered scheme in the application
+        @constraints: dictionary of keys with a list of functions that will return True if valid or raise Exception if not valid.
+            ej: { username: [existUsername, isRequired], email: [isValidEmail] }
+        @return: { username: ['username already exists'], email: ['email is invalid'] }
+    '''
     fields = vars(schema)
     return reduce(validateField, [{'key': field, 'value': fields[field], 'rules': constraints[field] if field in constraints else []} for field in fields.keys()], {})

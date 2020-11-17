@@ -6,6 +6,13 @@ from src.utils.validator import validate, isRequired
 
 
 class UserBusinessLogicService:
+    '''
+        UserBusinessLogicService class contains all the logic related to the user.
+        Is a middleware between the controller and the repository that validate or
+        do business logic related to a specific endpoint and is the one that will
+        throw an Exception in case the information is not possible to be retrived
+        or return the requested data
+    '''
     userRepository = None
 
     def __init__(

@@ -5,6 +5,11 @@ from src.config.logger import loggerConfig
 
 
 class LoggerService:
+    '''
+        LoggerService class registers a custom debugger to use
+        in our rest application given the loggerConfig defined
+        on our config logger
+    '''
     def __init__(self, path='', envvar='LOG_CFG'):
         logging.config.dictConfig(loggerConfig)
         self.logger = logging.getLogger('app_debug')

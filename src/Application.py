@@ -7,7 +7,10 @@ from src.controllers import authentication, user
 
 
 class Application(FastAPI):
+    ''' Wrapper for FAST API '''
+
     def __init__(self):
+        ''' SWAGGER CONFIGURATION '''
         super().__init__(
             title=settings['API']['TITLE'],
             description=settings['API']['DESCRIPTION'],
@@ -17,11 +20,13 @@ class Application(FastAPI):
         )
 
     def boostrap(self):
+        ''' SERVER CONFIGURATION '''
         self.debug = settings['SERVER']['DEBUG']
         self.enableCors()
         self.configureCommonApis()
 
     def enableCors(self):
+        ''' ENABLE CORSS '''
         self.add_middleware(
             CORSMiddleware,
             allow_credentials=True,
@@ -31,5 +36,6 @@ class Application(FastAPI):
         )
 
     def configureCommonApis(self):
+        ''' REGISTER APPLICATION ROUTERS '''
         self.include_router(authentication.router)
         self.include_router(user.router, dependencies=[Depends(auth_jwt)])
